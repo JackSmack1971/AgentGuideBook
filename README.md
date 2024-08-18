@@ -216,6 +216,69 @@ class FacebookManager(Agent):
         response = self.run_tool("AdCreator", ad_copy=ad_copy, image_path=image_path)
         return response
 ```
+Here's a GitHub Flavored Markdown (GFM) formatted summary and solution based on the issue described in the document you provided:
+
+---
+
+# Resolving the Readline Module Issue in Agency Swarm
+
+## Issue
+
+When working with the Agency Swarm framework, users on Windows (PC) may encounter an issue where the `readline` module is not available. This can cause errors when running the framework, particularly in the `agency.py` file.
+
+## Solution 1: Modifying `agency.py` to Handle Windows OS
+
+### Steps:
+
+1. **Locate the `agency.py` File:**
+   - Navigate to the installed library directory in your virtual environment:
+     ```
+     \venv\Lib\site-packages\agency_swarm\agency\agency.py
+     ```
+
+2. **Modify the Import Statement:**
+   - Replace the existing import statement with a conditional import to skip `readline` on Windows (`nt`).
+     ```python
+     if os.name != 'nt':
+         import readline
+     ```
+
+3. **Update the `setup_autocomplete` Function:**
+   - Replace the existing `setup_autocomplete` function in the same file with the following:
+     ```python
+     def setup_autocomplete(self):
+         """
+         Sets up readline with the completer function.
+         """
+         if os.name == 'nt':
+             # If running on Windows simply pass as readline is not available
+             pass
+         else:
+             self.recipient_agents = [agent.name for agent in self.main_recipients]  # Cache recipient agents for autocomplete
+             readline.set_completer(self.recipient_agent_completer)
+             readline.parse_and_bind('tab: complete')
+     ```
+
+## Solution 2: Installing `pyreadline3`
+
+If you prefer not to modify the `agency.py` file or if you need the `readline` functionality on Windows, you can install the `pyreadline3` module, which is a compatible alternative for Windows.
+
+### Steps:
+
+1. **Install `pyreadline3`:**
+   - Run the following command in your virtual environment:
+     ```
+     pip install pyreadline3
+     ```
+
+2. **Verify the Installation:**
+   - Ensure that the module is correctly installed by running your project again.
+
+By following these steps, you should be able to resolve the `readline` module issue on Windows systems, ensuring that your Agency Swarm framework runs smoothly.
+
+---
+
+This summary provides a clear, step-by-step guide to resolving the `readline` module issue that users might encounter when working with the Agency Swarm framework on Windows.
 
 ---
 
