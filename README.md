@@ -281,6 +281,105 @@ By following these steps, you should be able to resolve the `readline` module is
 This summary provides a clear, step-by-step guide to resolving the `readline` module issue that users might encounter when working with the Agency Swarm framework on Windows.
 
 ---
+Based on the content provided, here's a GitHub Flavored Markdown (GFM) formatted guide summarizing how to use open-source models with the Agency Swarm framework:
+
+---
+
+# Using Open-Source Models with Agency Swarm
+
+While OpenAI is typically recommended for use with the Agency Swarm framework, there are scenarios where you might prefer to work with open-source models. This guide provides an overview of tested and upcoming open-source projects that mimic the Assistants API, along with instructions for integrating these models with Agency Swarm.
+
+---
+
+## ✅ Tested Open-Source Projects
+
+- **[Open Assistant API](https://github.com/MLT-OSS/open-assistant-api)**  
+  - Stable and tested. However, there is [one known bug](https://github.com/MLT-OSS/open-assistant-api/issues/61) that needs resolution. Currently, this is the best open-source option.
+
+## 🔜 Projects Under Development
+
+- **[Astra Assistants API](https://github.com/datastax/astra-assistants-api)**  
+  - Under active development. Some issues with tool logic are still being worked on ([issue #27](https://github.com/datastax/astra-assistants-api/issues/27)).
+
+- **[OpenOpenAI](https://github.com/transitive-bullshit/OpenOpenAI)**  
+  - Unverified but likely operational.
+
+- **[LiteLLM](https://github.com/BerriAI/litellm/issues/2842)**  
+  - An Assistants API Proxy currently in development. It could become the preferred choice once it stabilizes.
+
+---
+
+## Integrating Open-Source Models with Agency Swarm
+
+To use open-source models with Agency Swarm, it’s recommended to install an earlier version of the `agency-swarm` package, as most open-source projects are not yet compatible with streaming and Assistants V2.
+
+### Installation
+
+1. **Install the compatible version of Agency Swarm:**
+
+   ```bash
+   pip install agency-swarm==0.1.7
+   ```
+
+2. **Set up the OpenAI client with your local open-source model:**
+
+   ```python
+   import openai
+   from agency_swarm import set_openai_client
+
+   client = openai.OpenAI(api_key="your-api-key", base_url="http://127.0.0.1:8000/")
+   set_openai_client(client)
+   ```
+
+3. **Define your agents using the open-source model:**
+
+   ```python
+   from agency_swarm import Agent
+
+   ceo = Agent(name="ceo", description="I am the CEO", model='ollama/llama3')
+   ```
+
+### Running the Agency with Gradio
+
+For a simple Gradio interface, use the non-streaming `demo_gradio` method from the `agency-swarm-lab` repository:
+
+```python
+from agency_swarm import Agency
+from .demo_gradio import demo_gradio
+
+agency = Agency([ceo])
+
+demo_gradio(agency)
+```
+
+### Backend Integration Example
+
+For direct backend usage, you can get completions like this:
+
+```python
+agency.get_completion("I am the CEO")
+```
+
+---
+
+## Known Limitations
+
+- **No Function Calling Support:**  
+  Most open-source models do not support function calling, which prevents agents from interacting with other agents within the agency. As a result, such models must be positioned at the end of the agency chart and cannot utilize any tools.
+
+- **Limited Retrieval-Augmented Generation (RAG):**  
+  Open-source models typically have limited RAG capabilities. You may need to develop a custom tool with a dedicated vector database.
+
+- **No Code Interpreter Support:**  
+  The Code Interpreter feature is still under development for all open-source assistants API implementations.
+
+---
+
+## Future Plans
+
+We will provide updates as new open-source assistant API implementations stabilize. If you successfully integrate other open-source projects with Agency Swarm, please share your experience through an issue or pull request on the project's repository.
+
+---
 
 ## Conclusion
 
