@@ -22,11 +22,150 @@ A multi-agent system (MAS) is a collection of AI agents that communicate and col
 2. **Handling Complex Tasks**: By distributing responsibilities across multiple agents, a MAS can tackle more complex workflows that a single agent would struggle with.
 3. **Scalability**: As your tasks and projects grow in complexity, MAS allows you to add more agents without overloading individual ones, thus maintaining efficiency and reliability.
 
+Based on the recent updates provided for the Agency Swarm framework, here’s a GitHub Flavored Markdown (GFM) formatted summary that captures the new features, enhancements, and instructions for leveraging them:
+
+---
+
+# Agency Swarm Updates (5.10.24)
+
+## 1. Streaming Responses
+
+### Overview
+The `get_completion_stream` method now allows for streaming conversations between agents. This method is similar to what is documented officially, but with an extension of the `AgencyEventHandler` class that includes additional properties like `agent_name` and `recipient_agent_name`.
+
+### Example Implementation
+```
+from typing_extensions import override
+from agency_swarm import AgencyEventHandler
+
+class EventHandler(AgencyEventHandler):
+    @override
+    def on_text_created(self, text) -> None:
+        # Get the name of the agent sending the message
+        print(f"\n{self.recipient_agent_name} @ {self.agent_name} > ", end="", flush=True)
+
+    @override
+    def on_text_delta(self, delta, snapshot):
+        print(delta.value, end="", flush=True)
+
+    def on_tool_call_created(self, tool_call):
+        print(f"\n{self.recipient_agent_name} > {tool_call.type}\n", flush=True)
+
+    def on_tool_call_delta(self, delta, snapshot):
+        if delta.type == 'code_interpreter':
+            if delta.code_interpreter.input:
+                print(delta.code_interpreter.input, end="", flush=True)
+            if delta.code_interpreter.outputs:
+                print(f"\n\noutput >", flush=True)
+                for output in delta.code_interpreter.outputs:
+                    if output.type == "logs":
+                        print(f"\n{output.logs}", flush=True)
+
+    @classmethod
+    def on_all_streams_end(cls):
+        print("\n\nAll streams have ended.")  # Conversation is over and message is returned to the user.
+
+# Usage
+response = agency.get_completion_stream("I want you to build me a website", event_handler=EventHandler)
+```
+**Note:** The `on_all_streams_end` method is crucial since your event handler might be invoked multiple times by different agents.
+
+### Is Streaming Active by Default?
+- **No**: Streaming is not active by default when using `get_completion`.
+- **Yes**: It is active for demo methods.
+
+---
+
+## 2. Assistant API V2 Integration
+
+### New Features:
+- **Temperature and Token Settings**: You can now set the `temperature` and `max_prompt_tokens` parameters in both `Agent` and `Agency` classes.
+  - **Defaults**: Effective for most scenarios.
+  - **Recommendation for Coding**: Set `temperature` to 0.
+
+### Compatibility:
+- The framework now supports Assistant API V2, with an effort to maintain compatibility across previous versions. Please report any issues encountered.
+
+---
+
+## 3. Managing Agents
+
+### The Agent Class
+Agents are essentially wrappers around Assistants in the OpenAI Assistants API. The `Agent` class offers various methods to manage the state, upload files, attach tools, and more.
+
+#### Example: Defining an Agent in Code
+```
+from agency_swarm import Agent
+
+agent = Agent(name="My Agent",
+              description="This is a description of my agent.",
+              instructions="These are the instructions for my agent.",
+              tools=[ToolClass1, ToolClass2],
+              temperature=0.3,
+              max_prompt_tokens=25000)
+```
+
+### Creating an Agent Template Using CLI
+You can create a structured environment for each agent using a simple CLI command.
+
+#### Command Syntax:
+```
+agency-swarm create-agent-template --name "AgentName" --description "Agent Description" [--path "/path/to/directory"] [--use_txt]
+```
+
+#### Folder Structure Created:
+- **`/your-specified-path/`**
+  - **`agency_manifesto.md`** (created if not exists)
+  - **`AgentName/`**
+    - **`files/`**: Store files to be uploaded to OpenAI.
+    - **`schemas/`**: Store OpenAPI schemas to be converted into tools.
+    - **`tools/`**: Store Python files as tools.
+    - **`AgentName.py`**: Main agent class file.
+    - **`__init__.py`**: Initializes the agent folder as a Python package.
+    - **`instructions.md` or `.txt`**: Instruction document for the agent.
+
+### Importing Existing Agents
+For complex use cases, pre-made agents can be imported and reused in your projects.
+
+#### Import Command:
+```
+agency-swarm import-agent --name "AgentName" --destination "/path/to/directory"
+```
+
+---
+
+## 4. Few-Shot Examples
+
+You can now provide few-shot examples to each agent to help guide their responses.
+
+### Example Format:
+```
+examples = [
+    {
+        "role": "user",
+        "content": "Hi!",
+        "attachments": [],
+        "metadata": {},
+    },
+    {
+        "role": "assistant",
+        "content": "Hi! I am the CEO. I am here to help you with your tasks. Please tell me what you need help with.",
+        "attachments": [],
+        "metadata": {},
+    }
+]
+
+agent.examples = examples
+```
+You can also provide these examples during the agent's initialization.
+
+---
+
 ### Communication Flows in Agency Swarm
 
 In the Agency Swarm framework, communication flows between agents are uniform and non-hierarchical. This means you can define communication patterns based on your specific needs, ensuring that all agents can interact seamlessly. Agents at the top level of the agency chart can communicate directly with the user, while those in nested levels can only interact with each other or their designated communication partners.
 
-```python
+```
 from agency_swarm import Agency
 
 agency = Agency([
@@ -41,7 +180,7 @@ agency = Agency([
 
 Agency Swarm allows you to stream the conversation between agents using the `get_completion_stream` method. This is particularly useful for real-time applications where you want to monitor and control agent interactions as they occur.
 
-```python
+```
 from typing_extensions import override
 from agency_swarm import AgencyEventHandler
 
@@ -73,7 +212,7 @@ In AI agent development, crafting effective prompts is crucial for guiding agent
 
 ### Example: Using CoT and RAG
 
-```python
+```
 def generate_ad_copy(product_name, product_features):
     # Chain-of-Thought: Break down the task into steps
     steps = [
@@ -100,7 +239,7 @@ def generate_ad_copy(product_name, product_features):
 
 The SerpAPI allows AI agents to retrieve real-time data from search engines, ensuring that the information they use is current and relevant. This is essential for tasks such as market analysis, trend monitoring, and competitive research.
 
-```python
+```
 import serpapi
 
 def get_latest_trends(query):
@@ -113,7 +252,7 @@ def get_latest_trends(query):
 
 The You.com API offers a suite of tools designed to ground AI outputs in the most recent and accurate information available on the web. It can be used to enhance the contextual understanding of AI agents, particularly when dealing with dynamic or time-sensitive topics.
 
-```python
+```
 import requests
 
 def get_ai_snippets_for_query(query):
@@ -127,7 +266,7 @@ def get_ai_snippets_for_query(query):
 
 Mistral AI API provides specialized endpoints that can be integrated into your AI agents for tasks such as advanced data processing, natural language understanding, and more. This API is useful for developing agents that require a higher level of intelligence and customization.
 
-```python
+```
 import mistral
 
 def process_data_with_mistral(data):
@@ -140,7 +279,7 @@ def process_data_with_mistral(data):
 
 Pinecone is a vector database that allows AI agents to perform similarity searches, which is essential for tasks like recommendation systems, anomaly detection, and content matching. Integrating Pinecone with your AI agents can significantly enhance their ability to process and analyze large datasets.
 
-```python
+```
 import pinecone
 
 def vector_search(query_vector):
@@ -194,7 +333,7 @@ def vector_search(query_vector):
 
  Manager Agent
 
-```python
+```
 from agency_swarm.agents import Agent
 
 class FacebookManager(Agent):
@@ -238,14 +377,14 @@ When working with the Agency Swarm framework, users on Windows (PC) may encounte
 
 2. **Modify the Import Statement:**
    - Replace the existing import statement with a conditional import to skip `readline` on Windows (`nt`).
-     ```python
+     ```
      if os.name != 'nt':
          import readline
      ```
 
 3. **Update the `setup_autocomplete` Function:**
    - Replace the existing `setup_autocomplete` function in the same file with the following:
-     ```python
+     ```
      def setup_autocomplete(self):
          """
          Sets up readline with the completer function.
@@ -281,9 +420,6 @@ By following these steps, you should be able to resolve the `readline` module is
 This summary provides a clear, step-by-step guide to resolving the `readline` module issue that users might encounter when working with the Agency Swarm framework on Windows.
 
 ---
-Based on the content provided, here's a GitHub Flavored Markdown (GFM) formatted guide summarizing how to use open-source models with the Agency Swarm framework:
-
----
 
 # Using Open-Source Models with Agency Swarm
 
@@ -317,13 +453,13 @@ To use open-source models with Agency Swarm, it’s recommended to install an ea
 
 1. **Install the compatible version of Agency Swarm:**
 
-   ```bash
+   ```
    pip install agency-swarm==0.1.7
    ```
 
 2. **Set up the OpenAI client with your local open-source model:**
 
-   ```python
+   ```
    import openai
    from agency_swarm import set_openai_client
 
@@ -333,7 +469,7 @@ To use open-source models with Agency Swarm, it’s recommended to install an ea
 
 3. **Define your agents using the open-source model:**
 
-   ```python
+   ```
    from agency_swarm import Agent
 
    ceo = Agent(name="ceo", description="I am the CEO", model='ollama/llama3')
@@ -343,7 +479,7 @@ To use open-source models with Agency Swarm, it’s recommended to install an ea
 
 For a simple Gradio interface, use the non-streaming `demo_gradio` method from the `agency-swarm-lab` repository:
 
-```python
+```
 from agency_swarm import Agency
 from .demo_gradio import demo_gradio
 
@@ -356,7 +492,7 @@ demo_gradio(agency)
 
 For direct backend usage, you can get completions like this:
 
-```python
+```
 agency.get_completion("I am the CEO")
 ```
 
