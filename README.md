@@ -1,974 +1,284 @@
-# Ultimate Guide to AI Agent Development and Multi-Agent Systems with Agency Swarm
+# 🚀 The Ultimate Guide to AI Agent Development and Multi-Agent Systems with Agency Swarm
 
-## Introduction
+## 📖 Introduction
 
-The rapid advancement in AI technologies has opened up new opportunities for automating complex tasks across various domains. At the forefront of these innovations is the concept of AI agents—intelligent entities capable of performing tasks autonomously by following instructions, retrieving relevant data, and making decisions. While individual AI agents can be powerful, combining them into an "Agency" can further enhance their capabilities, allowing for more complex workflows, reduced errors, and increased scalability.
+Hey there! Welcome to this all-encompassing guide on AI agent development and multi-agent systems, where we’ll dive into the fascinating world of AI agents and how to harness their power using the Agency Swarm framework. Whether you're just dipping your toes into AI waters or you’re already wading in deep, this guide has got you covered.
 
-This guide provides an in-depth look into AI agent development, with a focus on multi-agent systems using the Agency Swarm framework. We will explore everything from basic concepts to advanced techniques, including prompt engineering, API integrations, troubleshooting common issues, and deploying scalable AI solutions. By the end of this guide, you'll be equipped to build, manage, and optimize AI agents and their respective agencies.
+AI technologies are evolving at lightning speed, opening up a treasure trove of opportunities for automating complex tasks across various domains. At the heart of these advancements are AI agents—intelligent little helpers that can perform tasks on their own, like finding relevant data, making decisions, and even following instructions, all without constant supervision.
 
----
+Now, imagine combining several of these agents into a "swarm" or "agency." When these agents work together, their capabilities multiply, allowing them to handle more intricate workflows, reduce errors, and scale with ease. It's like having an entire team of super-productive workers who never sleep, never take breaks, and never get tired!
 
-## Understanding AI Agents and Multi-Agent Systems
-
-### What are AI Agents?
-
-AI agents are autonomous entities designed to perform specific tasks by processing data, executing actions, and making decisions based on predefined instructions and the context they operate in. Unlike traditional AI automations that follow rigid, pre-programmed workflows, AI agents possess decision-making capabilities, allowing them to adapt to new situations and handle complex tasks with greater flexibility.
-
-### The Role of Multi-Agent Systems
-
-A multi-agent system (MAS) is a collection of AI agents that communicate and collaborate to achieve a common goal. The key benefits of using MAS include:
-
-1. **Reduced Hallucinations**: When agents are part of an agency, they can supervise one another and correct mistakes, reducing the likelihood of errors.
-2. **Handling Complex Tasks**: By distributing responsibilities across multiple agents, a MAS can tackle more complex workflows that a single agent would struggle with.
-3. **Scalability**: As your tasks and projects grow in complexity, MAS allows you to add more agents without overloading individual ones, thus maintaining efficiency and reliability.
+In this guide, we’ll cover everything from the basics of AI agents and multi-agent systems to advanced topics like prompt engineering, API integrations, troubleshooting, and deploying scalable AI solutions. By the end, you’ll be well-equipped to build, manage, and optimize AI agents and their respective agencies like a pro. So, grab a coffee, get comfy, and let’s dive in!
 
 ---
 
-# Novel Approaches for Mitigating Hallucinations in Large Language Models (LLMs)
+## 🧠 Understanding AI Agents and Multi-Agent Systems
 
-Large Language Models (LLMs) have shown remarkable capabilities in generating human-like text. However, they often produce "hallucinations"—outputs that are factually incorrect or nonsensical. This report explores novel approaches to mitigate these hallucinations, drawing from recent research and advancements in the field.
+### 🤖 What Exactly Are AI Agents?
 
-## 1. Retrieval-Augmented Generation (RAG)
+Alright, let’s start with the basics. AI agents are like those super-smart, highly efficient robots you see in movies—but they live inside your computer and don’t need to be recharged. These agents are designed to perform specific tasks by processing data, executing actions, and making decisions based on a set of predefined instructions and the context they’re operating in. Think of them as the Swiss Army knives of the digital world—versatile, reliable, and incredibly useful.
 
-RAG is a hybrid approach that combines the generative capabilities of LLMs with a retrieval mechanism that consults external knowledge sources in real-time. This method aims to ground the model's responses in real-world information, significantly reducing the likelihood of generating factually incorrect or irrelevant content. The process involves three steps: retrieval of relevant information, augmentation of the input query with this information, and generation of a more informed response. While RAG enhances output quality, it also introduces challenges such as ensuring the reliability of external sources and managing increased computational demands.
+But what makes AI agents stand out from traditional AI automations? The key difference is their ability to make decisions. Traditional automation follows strict, pre-programmed workflows: if this happens, do that. AI agents, on the other hand, have decision-making capabilities, which means they can adapt to new situations, handle unexpected tasks, and generally be a lot more flexible.
 
-## 2. Prompt Engineering and Tuning
+For instance, instead of just following a script, an AI agent could figure out the best route to take based on traffic data, adjust its approach if new information becomes available, or even collaborate with other agents to solve more complex problems. Pretty neat, right?
 
-Prompt engineering involves crafting prompts in a way that maximizes the likelihood of generating accurate and relevant responses. This can include increasing the specificity and clarity of prompts, using examples, and breaking down complex tasks into simpler steps. Prompt tuning, on the other hand, adjusts prompts during the fine-tuning process to elicit desired behaviors from the model. These techniques help guide the model towards more accurate outputs by providing clearer instructions and context.
+### 👥 The Power of Multi-Agent Systems (MAS)
 
-## 3. Feedback Loops and Continuous Monitoring
+Now, what happens when you have more than one AI agent working together? You get a Multi-Agent System (MAS). Imagine a team of agents, each with their own specialties, collaborating to achieve a common goal. This team can tackle tasks that are too complex for a single agent, making MAS incredibly powerful.
 
-Implementing feedback loops involves iteratively providing feedback to the model to refine its responses over time. Continuous monitoring of the model's outputs allows for the detection and correction of hallucinations as they occur, ensuring that the model remains reliable and accurate. This approach helps in maintaining the quality of the generated content by learning from past mistakes and improving future responses.
+Here’s why you’d want to use a MAS:
 
-## 4. Knowledge Grounding
-
-Incorporating external knowledge bases into the model's training and inference processes can significantly reduce hallucinations. By grounding the model's responses in verified information, the likelihood of generating factually incorrect content is minimized. This method ensures that the model has access to a wealth of accurate information, which it can use to generate more reliable outputs.
-
-## 5. Novel Loss Functions
-
-Developing new loss functions that optimize for faithfulness during training can help mitigate hallucinations. These loss functions are designed to penalize the model for generating incorrect or misleading information, thereby encouraging it to produce more accurate outputs. This approach focuses on improving the model's internal mechanisms to enhance the quality of its responses.
-
-## 6. Advanced Decoding Strategies
-
-Employing advanced decoding strategies can help generate text in ways that increase faithfulness. Techniques such as re-ranking strategies, cross-encoder fine-tuning, and hybrid retrieval approaches can be used to refine the generated content and ensure its accuracy. These strategies work by evaluating multiple potential outputs and selecting the most accurate and relevant one.
-
-## 7. Semantic Entropy
-
-A novel method called "semantic entropy" involves calculating the uncertainty in the model's responses using a second LLM. This technique helps flag answers as unreliable when there is a lack of sufficient knowledge, thereby identifying and mitigating specific kinds of hallucinations. This approach leverages the strengths of multiple models to enhance the reliability of the generated content.
-
-## 8. Domain-Specific Tuning
-
-Fine-tuning the model for specific tasks or domains can improve its accuracy and reduce hallucinations. This involves adapting the model to the particular requirements and nuances of a given domain, ensuring that it generates more relevant and accurate responses. Domain-specific tuning helps the model better understand and respond to specialized queries.
-
-## 9. Explainability and Interpretability
-
-Enhancing the explainability and interpretability of LLMs can help in understanding and mitigating hallucinations. By making the model's decision-making process more transparent, it becomes easier to identify and correct errors. This approach focuses on improving the user's ability to trust and verify the model's outputs.
-
-## Conclusion
-
-Mitigating hallucinations in LLMs is a multifaceted challenge that requires a combination of techniques. Retrieval-Augmented Generation, prompt engineering, feedback loops, knowledge grounding, novel loss functions, advanced decoding strategies, semantic entropy, domain-specific tuning, and enhancing explainability are some of the novel approaches that show promise in addressing this issue. By integrating these methods, researchers and developers can create more reliable and accurate LLMs, ultimately improving their utility and trustworthiness.
+- **Reduced Hallucinations**: Hallucinations in AI? Yep, they exist. Sometimes, an AI might generate output that’s just plain wrong or nonsensical. When agents are part of a team or "agency," they can check each other’s work and correct mistakes before they become a problem.
+- **Handling Complex Tasks**: Some tasks are just too big or complicated for a single agent to handle. By splitting the workload across multiple agents, each can focus on what they do best, making the overall process more efficient.
+- **Scalability**: As your tasks and projects grow in complexity, MAS allows you to add more agents without overloading the system. This means you can handle more work without a hitch, keeping things running smoothly no matter how big your projects get.
 
 ---
 
-# Agency Swarm
+## 🌟 The Magic of Agency Swarm
 
-**Author:** Arsenii Shatokhin  
-**Date:** No Date
+### What is Agency Swarm, Anyway?
 
----
+Let me introduce you to your new best friend in the world of AI agent development: **Agency Swarm**. This open-source framework was built by Arsenii Shatokhin (aka VRSEN) to simplify the process of creating, managing, and orchestrating AI agents. Think of it as your ultimate toolkit for building a swarm of AI agents, each with their own roles and capabilities, working together in perfect harmony.
 
-## Introduction
+But Agency Swarm isn’t just another tool in the AI space. It’s a whole philosophy of automation, where agents are thought of as real-world entities—like employees in an agency, each with a specific job to do. This makes the whole process more intuitive, both for the agents and for you, the user.
 
-Agency Swarm is an open-source agent orchestration framework built on top of the latest OpenAI Assistants API.
+### 🌟 Key Features You’ll Love
 
----
+Agency Swarm comes packed with a bunch of cool features designed to make your life easier:
 
-## What is Agency Swarm?
+- **Customizable Agent Roles:** Define roles like CEO, virtual assistant, developer, and more. You have full control over what each agent does, thanks to the flexibility of the Assistants API.
+- **Full Control Over Prompts:** No more being stuck with pre-defined prompts. Agency Swarm lets you customize everything, so your agents say exactly what you want them to.
+- **Tool Creation Made Easy:** Tools are created using something called Instructor, which provides a user-friendly interface and automatic type validation, ensuring everything works smoothly.
+- **Efficient Communication:** Your agents can chat with each other through a "send message" tool, making sure everyone’s on the same page.
+- **State Management:** Agency Swarm keeps track of your assistants’ states in a special `settings.json` file, so they always know what’s going on.
+- **Ready for Production:** Built to be reliable and easily deployable, Agency Swarm is perfect for production environments. Whether you're building something small or scaling up, it’s got you covered.
 
-Agency Swarm started as a desire and effort by Arsenii Shatokhin (aka VRSEN) to fully automate his AI Agency with AI. By building this framework, we aim to simplify the agent creation process and enable anyone to create a collaborative swarm of agents (Agencies), each with distinct roles and capabilities. By thinking about automation in terms of real-world entities, such as agencies and specialized agent roles, we make it a lot more intuitive for both the agents and the users.
+### Why Choose Agency Swarm Over Other Frameworks?
 
----
+You might be wondering: how does Agency Swarm stack up against other frameworks like AutoGen or CrewAI? Let’s break it down:
 
-## Key Features
+- **AutoGen vs. Agency Swarm:** AutoGen requires an extra call to the model to determine who speaks next, which can be inefficient and less controllable. Agency Swarm, on the other hand, lets your agents determine their communication partners based on their own descriptions, giving you more adaptability and control.
+- **CrewAI vs. Agency Swarm:** CrewAI uses a "process" concept for communication, but it lacks type checking or error correction, which can cause the whole system to fail if something goes wrong. Agency Swarm is built on more modern models, with built-in type checking and error correction, making it much more reliable.
 
-- **Customizable Agent Roles:** Define roles like CEO, virtual assistant, developer, etc., and customize their functionalities with the Assistants API.
-- **Full Control Over Prompts:** Avoid conflicts and restrictions of pre-defined prompts, allowing full customization.
-- **Tool Creation:** Tools within Agency Swarm are created using Instructor, which provides a convenient interface and automatic type validation.
-- **Efficient Communication:** Agents communicate through a specially designed "send message" tool based on their own descriptions.
-- **State Management:** Agency Swarm efficiently manages the state of your assistants on OpenAI, maintaining it in a special `settings.json` file.
-- **Deployable in Production:** Agency Swarm is designed to be reliable and easily deployable in production environments.
-
----
-
-## Agency Swarm vs Other Frameworks
-
-Unlike other frameworks, Agency Swarm:
-
-- Does not write prompts for you.
-- Prevents hallucinations with automatic type checking and error correction with Instructor.
-- Allows you to easily define communication flows.
-
-### AutoGen vs Agency Swarm
-
-In AutoGen, by default, the next speaker is determined with an extra call to the model that emulates "role play" between the agents. Not only is this very inefficient, but it also makes the system less controllable and less customizable, because you cannot control which agent can communicate with which other agent.
-
-Recently, AutoGen has added support for determining the next speaker based on certain hardcoded conditions. While this does make your system more customizable, it completely undermines the main benefit of agentic systems - adaptability. In my opinion, you should only determine the boundaries for your agents, not the conditions themselves, as you are unlikely to account for every single condition in the real world.
-
-In Agency Swarm, on the other hand, communication is handled through the special `SendMessage` tool. Your agents will determine who to communicate with by themselves based on their own descriptions. All you have to do is set the boundaries for their communication inside the agency chart.
-
-### CrewAI vs Agency Swarm
-
-CrewAI introduces a concept of "process" into agent communication, which provides some control over the communication flow. However, the biggest problem with CrewAI is that it is built on top of Langchain, which was created long before any function-calling models were released. This means that there is no type checking or error correction, so any action that your agent takes (which is the most important part of the system) could cause the whole system to go down if the model hallucinates. The sole advantage of CrewAI is its compatibility with open-source models.
+So, in short, Agency Swarm gives you more control, better reliability, and a smoother experience overall.
 
 ---
 
-## Need Help?
+## 🛠️ Let’s Get Technical: Mitigating Hallucinations in Large Language Models (LLMs)
 
-If you need quick help with Agency Swarm, feel free to ask in the Discord server.
+If you've worked with AI models before, you’ve probably encountered hallucinations. These aren’t the trippy, psychedelic kind, but rather situations where the model generates text that’s just plain wrong or doesn’t make sense. Here’s how to tackle that:
 
-If you need help creating custom agent swarms for your business, check out our Agents-as-a-Service subscription, or schedule a consultation with me at [https://calendly.com/vrsen/ai-project-consultation](https://calendly.com/vrsen/ai-project-consultation).
+### 1. 🧠 Retrieval-Augmented Generation (RAG)
+
+RAG is like giving your AI model a cheat sheet. It combines the model’s generative abilities with real-time retrieval from external knowledge sources. This means the model can ground its responses in actual information, significantly cutting down on the chances of hallucinations. It’s like having an open-book test—way less room for errors.
+
+### 2. ✏️ Prompt Engineering and Tuning
+
+This one’s all about the art of asking the right questions. By carefully crafting your prompts, you can guide the model to generate more accurate and relevant responses. Need the model to nail a specific task? Break it down into smaller, clearer steps. And with prompt tuning, you can fine-tune the prompts over time to get even better results.
+
+### 3. 🔄 Feedback Loops and Continuous Monitoring
+
+Think of feedback loops as your model’s personal trainer. By continuously providing feedback on its outputs, you help the model learn from its mistakes and get better over time. Combine this with continuous monitoring, and you’ll have a system that’s always improving and staying on track.
+
+### 4. 📚 Knowledge Grounding
+
+This approach involves integrating verified knowledge bases into the model’s processes. It’s like having a fact-checker on hand to ensure the model’s outputs are always accurate. By grounding responses in reliable information, you drastically reduce the likelihood of hallucinations.
+
+### 5. ⚙️ Novel Loss Functions
+
+Loss functions are what help guide the model during training. By developing new loss functions that specifically penalize incorrect or misleading information, you can nudge the model toward producing more accurate outputs. It’s like setting the model up to win by rewarding good behavior.
+
+### 6. 🧠 Advanced Decoding Strategies
+
+Decoding strategies are all about how the model generates its final output. By employing advanced strategies like re-ranking, cross-encoder fine-tuning, and hybrid retrieval, you can ensure the model produces the most accurate and relevant content possible.
+
+### 7. 🔍 Semantic Entropy
+
+This fancy-sounding method involves using a second LLM to calculate the uncertainty in the model’s responses. It’s a way of flagging answers that might be unreliable, so you can address potential hallucinations before they cause problems.
+
+### 8. 🎯 Domain-Specific Tuning
+
+Sometimes, one size doesn’t fit all. By fine-tuning the model for specific tasks or domains, you can improve its accuracy and reduce hallucinations by tailoring it to the particular requirements of your project.
+
+### 9. 🔎 Explainability and Interpretability
+
+This one’s for the humans. By making the model’s decision-making process more transparent, you make it easier to trust and verify the
+
+ outputs. It’s like having a window into the model’s brain, allowing you to spot and fix issues more easily.
 
 ---
 
-## License
+## ⚙️ Getting Started with Agency Swarm: A Laid-Back Quick Start Guide
 
-This project is licensed under the terms of the MIT license.
+Alright, enough theory—let’s roll up our sleeves and get our hands dirty. Setting up Agency Swarm is a breeze, and before you know it, you’ll have your own swarm of AI agents buzzing away.
 
----
+### 🚀 Installation: Let’s Get This Show on the Road
 
-# Quick Start - Agency Swarm
+First things first, you need to install Agency Swarm. It’s as simple as running this command:
 
-## Quick Start
-
-When it comes to getting started with Agency Swarm, you have two options:
-
-- **Start from Scratch:** This is the best option if you want to get a feel for the framework and understand how it works. You can start by creating your own agents and tools, and then use them to create your own agencies.
-- **Use Genesis Swarm:** This is the best option if you want to get started quickly and don't want to spend time creating your own agents and tools. You can use the Genesis Agency to create your agent templates and tools, and then fine-tune them to your needs.
-- **Create Agent Templates with CLI:** This is the best option if you want to create a structured environment for each agent and tool. See Advanced Agents for more information.
-
-### Installation
-
-```
+```bash
 pip install agency-swarm
 ```
 
-### Start from Scratch
+Done? Awesome! You’re already halfway there.
 
-#### Set Your OpenAI Key
+### 🔧 Setting Up Your OpenAI Key
 
-```
+Now that you’ve got the framework installed, you’ll need to set your OpenAI API key. Think of this as giving your agents the keys to the kingdom—they can’t do much without it.
+
+```python
 from agency_swarm import set_openai_key
 set_openai_key("YOUR_API_KEY")
 ```
 
-#### Create Tools
+Just replace `"YOUR_API_KEY"` with, well, your actual API key, and you’re good to go.
 
-Define your custom tools with Instructor. All tools must extend the `BaseTool` class and implement the `run` method.
+### 🛠️ Creating Custom Tools: Time to Get Crafty
 
-```
+Tools are what your agents use to get their jobs done, so let’s create a custom tool. Don’t worry, it’s easier than it sounds. Here’s a simple example:
+
+```python
 from agency_swarm.tools import BaseTool
 from pydantic import Field
 
 class MyCustomTool(BaseTool):
-    """
-    A brief description of what the custom tool does. 
-    The docstring should clearly explain the tool's purpose and functionality.
-    It will be used by the agent to determine when to use this tool.
-    """
-
-    # Define the fields with descriptions using Pydantic Field
-    example_field: str = Field(
-        ..., description="Description of the example field, explaining its purpose and usage for the Agent."
-    )
-
-    # Additional Pydantic fields as required
-    # ...
+    example_field: str = Field(..., description="Description of the example field.")
 
     def run(self):
-        """
-        The implementation of the run method, where the tool's main functionality is executed.
-        This method should utilize the fields defined above to perform the task.
-        Docstring is not required for this method and will not be used by your agent.
-        """
-
-        # Your custom tool logic goes here
-        do_something(self.example_field)
-
-        # Return the result of the tool's operation as a string
+        # Custom tool logic
         return "Result of MyCustomTool operation"
 ```
 
-#### Define Agent Roles
+In this snippet, we’re defining a tool with one field, `example_field`, and a `run` method where you can put all the cool stuff you want your tool to do.
 
-Define your agent roles. For example, a CEO agent for managing tasks and a developer agent for executing tasks.
+### 👥 Defining Agent Roles: The Fun Part
 
-```
+Now for the fun part—creating your agents! You can think of them as characters in a game, each with their own role and set of instructions. Here’s how to define a CEO and a Developer:
+
+```python
 from agency_swarm import Agent
 
 ceo = Agent(name="CEO",
             description="Responsible for client communication, task planning, and management.",
-            instructions="You must converse with other agents to ensure complete task execution.", # can be a file like ./instructions.md
+            instructions="Converse with other agents to ensure complete task execution.",
             tools=[])
 
 developer = Agent(name="Developer",
                   description="Responsible for executing tasks and providing feedback.",
-                  instructions="You must execute the tasks provided by the CEO and provide feedback.", # can be a file like ./instructions.md
+                  instructions="Execute the tasks provided by the CEO and provide feedback.",
                   tools=[MyCustomTool])
 ```
 
-#### Create Agency
+Now, you’ve got a CEO who manages tasks and a Developer who gets things done. You can create as many agents as you like, each with their own unique role.
 
-Define your agency chart. Any agents that are listed in the same list (e.g., `[[ceo, dev]]`) can communicate with each other. The top-level list (`[ceo]`) defines agents that can communicate with the user.
+### 🏢 Creating an Agency: Let’s Build a Team
 
-```
+It’s time to bring your agents together into an agency. Think of this as building your dream team—each agent plays a specific role, and together, they can accomplish amazing things.
+
+```python
 from agency_swarm import Agency
 
 agency = Agency([
-    ceo,  # CEO will be the entry point for communication with the user
-    [ceo, developer],  # CEO can initiate communication with Developer
-], shared_instructions='You are a part of an AI development agency.\n\n') # shared instructions for all agents
+    ceo,  # CEO communicates with the user
+    [ceo, developer],  # CEO can communicate with Developer
+])
 ```
 
-#### Note on Communication Flows
+Here, we’ve defined an agency where the CEO can communicate with the Developer, and both can work together to complete tasks.
 
-In Agency Swarm, communication flows are directional, meaning they are established from left to right in the `agency_chart` definition. For instance, in the example above, the CEO can initiate a chat with the developer (dev), and the developer can respond in this chat. However, the developer cannot initiate a chat with the CEO.
+### ▶️ Running a Demo: Watch Your Agents in Action
 
-#### Run Demo
+Want to see your agents in action? Let’s run a demo and watch them go to work. You have a couple of options here:
 
-Run the demo to see your agents in action!
+- **Web Interface:**
 
-- **Web interface:**
+  ```python
+  agency.demo_gradio(height=900)
+  ```
 
-```
-agency.demo_gradio(height=900)
-```
+  This command launches a sleek web interface where you can interact with your agents and see them in action.
 
-- **Terminal version:**
+- **Terminal Version:**
+
+  ```python
+  agency.run_demo()
+  ```
+
+  If you prefer keeping things in the terminal, this command will run the demo right there, showing you how your agents handle tasks.
+
+- **Backend Version:**
+
+  ```python
+  completion_output = agency.get_completion("Please create a new website for our client.", yield_messages=False)
+  ```
+
+  This one’s for the backend folks. Use it to get the output directly from your agents without the bells and whistles.
+
+---
+
+## 🛠️ Diving Deeper: Advanced Tools in Agency Swarm
+
+Okay, you’ve got the basics down, but what if you want to go further? Let’s talk about creating more advanced tools and making your agents even more powerful.
+
+### Example: Answering Questions with Validated Citations
+
+Let’s say you want to build a tool that not only answers questions but also provides citations to back up its answers. This is where things get really interesting.
+
+Here’s how you could set up such a tool in Agency Swarm:
 
 ```python
-agency.run_demo()
-```
-
-- **Backend version:**
-
-```
-completion_output = agency.get_completion("Please create a new website for our client.", yield_messages=False)
-```
-
----
-
-## Use Genesis Agency
-
-### Run the Genesis Command
-
-This will start the Genesis Agency in your terminal, creating your agent templates for you.
-
-#### Command Syntax:
-
-```
-agency-swarm genesis [--openai_key "YOUR_API_KEY"]
-```
-
-#### Chat with Genesis CEO
-
-Provide as much context as possible to Genesis Agency. Make sure to include:
-
-- Your mission and goals.
-- The agents you want to involve and their communication flows.
-- Which tools or APIs each agent should have access to, if any.
-
-### Fine-Tune
-
-After Genesis has created your agents for you, you will see all the agent folders in the same directory where you ran the `genesis` command. You can then fine-tune the agents and tools as per your requirements.
-
-#### Steps:
-
-1. **Adjust Tools:** Modify the tools in the tools directories of each agent as per your requirements.
-2. **Adjust Instructions:** Modify the agents in the agents directories as per your requirements.
-3. **Run Agency:** Run the `agency.py` file, send your tasks, and see how they perform.
-4. **Repeat:** Repeat the process until your agents are performing as expected.
-
----
-
-### Agent Development is an Iterative Process
-
-Right now, all agent development is iterative. You will need to constantly monitor and adjust your system until it works as expected. In the future, this will become less of a problem, as larger and smarter models are released.
-
----
-
-## Next Steps
-
-- Learn how to create more Tools, Agents, and Agencies.
-- Deploy in Production.
-
----
-
-# Advanced Tools - Agency Swarm
-
-## Advanced Tools
-
-All tools in Agency Swarm are created using Instructor. The only difference is that you
-
- must extend the `BaseTool` class and implement the `run` method with your logic inside. For many great examples of what you can create, check out the Instructor Cookbook.
-
-### Example: Converting Answering Questions with Validated Citations Example from Instructor
-
-This is an example of how to convert an extremely useful tool for RAG applications from Instructor. It allows your agents to not only answer questions based on context but also to provide the exact citations for the answers. This way your users can be sure that the information is always accurate and reliable.
-
-#### Original Instructor Library Implementation
-
-```
-from agency_swarm.tools import BaseTool, BaseModel
-from pydantic import Field, model_validator, FieldValidationInfo
-from typing import List
-import re
-
-class Fact(BaseModel):
-    fact: str = Field(...)
-    substring_quote: List[str] = Field(...)
-
-    @model_validator(mode="after")
-    def validate_sources(self, info: FieldValidationInfo) -> "Fact":
-        text_chunks = info.context.get("text_chunk", None)
-        spans = list(self.get_spans(text_chunks))
-        self.substring_quote = [text_chunks[span[0] : span[1]] for span in spans]
-        return self
-
-    def get_spans(self, context):
-        for quote in self.substring_quote:
-            yield from self._get_span(quote, context)
-
-    def _get_span(self, quote, context):
-        for match in re.finditer(re.escape(quote), context):
-            yield match.span()
-```
-
-#### QuestionAnswer
-
-```
-class QuestionAnswer(BaseModel):
-    question: str = Field(...)
-    answer: List[Fact] = Field(...)
-
-    @model_validator(mode="after")
-    def validate_sources(self) -> "QuestionAnswer":
-        self.answer = [fact for fact in self.answer if len(fact.substring_quote) > 0]
-        return self
-```
-
-### Context Retrieval
-
-In the original Instructor example, the context is passed into the prompt beforehand, which is typical for standard non-agent LLM applications. However, in the context of Agency Swarm, we must allow the agents to retrieve the context themselves.
-
-#### Agency Swarm Implementation
-
-To allow your agents to retrieve the context themselves, we must split `QuestionAnswer` into two separate tools: `QueryDatabase` and `AnswerQuestion`. We must also retrieve context from `shared_state`, as the context is not passed into the prompt beforehand, and `FieldValidationInfo` is not available in the `validate_sources` method.
-
-#### The `QueryDatabase` Tool
-
-- Check if the context is already retrieved in `shared_state`. If it is, raise an error. (This means that the agent retrieved the context twice, without answering the question in between, which is most likely a hallucination.)
-- Retrieve the context and save it to the `shared_state`.
-- Return the context to the agent, so it can be used to answer the question.
-
-```
 class QueryDatabase(BaseTool):
-    """Use this tool to query a vector database to retrieve the relevant context for the question."""
     question: str = Field(..., description="The question to be answered")
 
     def run(self):
-        # Check if context is already retrieved 
-        if self.shared_state.get("context", None) is not None:
-            raise ValueError("Context already retrieved. Please proceed with the AnswerQuestion tool.")
-
-        # Your code to retrieve the context here
+        # Retrieve context and save it to the shared state
         context = "This is a test context"
-
-        # Then, save the context to the shared state
         self.shared_state.set("context", context)
-
-        return f"Context retrieved: {context}.\n\n Please proceed with the AnswerQuestion tool."
+        return f"Context retrieved: {context}."
 ```
 
-#### The `AnswerQuestion` Tool
+And here’s a tool for answering the question based on the retrieved context:
 
-- Check if the context is already retrieved. If it is not, raise an error. (This means that the agent is trying to answer the question without retrieving the context first.)
-- Use the context from the `shared_state` to answer the question with a list of facts.
-- Remove the context from the `shared_state` after the question is answered. (This is done so the next question can be answered with fresh context.)
-
-```
+```python
 class AnswerQuestion(BaseTool):
     answer: str = Field(..., description="The answer to the question, based on context.")
     sources: List[Fact] = Field(..., description="The sources of the answer")
 
     def run(self):
-        # Remove the context after the question is answered
-        self.shared_state.set("context", None)
-
-        # additional logic here as needed, for example save the answer to a database
-
-        return "Success. The question has been answered." # or return the answer, if needed
-
-    @model_validator(mode="after")
-    def validate_sources(self) -> "QuestionAnswer":
-        # In "Agency Swarm", context is directly extracted from `shared_state`
-        context = self.shared_state.get("context", None)  # Highlighting the change
-        if context is None:
-            # Additional check to ensure context is retrieved before proceeding
-            raise ValueError("Please retrieve the context with the QueryDatabase tool first.")
-        self.answer = [fact for fact in self.answer if len(fact.substring_quote) > 0]
-        return self
+        # Use the context from the shared state to answer the question
+        context = self.shared_state.get("context", None)
+        # Further processing...
+        return "Success. The question has been answered."
 ```
 
-#### The `Fact` Tool
-
-The `Fact` tool will stay primarily the same. The only difference is that we must extract the context from the `shared_state` inside the `validate_sources` method. The `run` method is not needed, as this tool only validates the input from the model.
-
-```
-class Fact(BaseTool):
-    fact: str = Field(...)
-    substring_quote: List[str] = Field(...)
-
-    def run(self):
-        pass
-
-    @model_validator(mode="after")
-    def validate_sources(self) -> "Fact":
-        context = self.shared_state.get("context", None)  
-        text_chunks = context.get("text_chunk", None)
-        spans = list(self.get_spans(text_chunks))
-        self.substring_quote = [text_chunks[span[0] : span[1]] for span in spans]
-        return self
-
-    # Methods `get_spans` and `_get_span` remain unchanged
-```
+By splitting the process into two tools—one for querying the database and one for answering the question—you give your agents more control and make the system more robust.
 
 ---
 
-### Conclusion
+## 🔧 ToolFactory Class: The Swiss Army Knife of Tools
 
-To implement tools with Instructor in Agency Swarm, generally, you must:
+In Agency Swarm, `ToolFactory` is your go-to class for creating tools from various sources, like Langchain or OpenAPI schemas. While you can import tools from other libraries, it’s generally better to create them from scratch using Instructor for more control and reliability.
 
-1. Extend the `BaseTool` class.
-2. Add fields with types and clear descriptions, plus the tool description itself.
-3. Implement the `run` method with your execution logic inside.
-4. Add validators and checks based on various conditions.
-5. Split tools into smaller tools to give your agents more control, as needed.
+Here’s how you can convert a Langchain tool into an Agency Swarm tool:
 
----
-
-## ToolFactory Class
-
-`ToolFactory` is a class that allows you to create tools from different sources. You can create tools from Langchain, OpenAPI schemas. However, it is preferable to implement tools from scratch using Instructor, as it gives you a lot more control.
-
-### Import from Langchain
-
-**Not recommended**  
-This method is not recommended, as it does not provide the same level of type checking, error correction, and tool descriptions as Instructor. However, it is still possible to use this method if you prefer.
-
-```
+```python
 from langchain.tools import YouTubeSearchTool
 from agency_swarm.tools import ToolFactory
 
 LangchainTool = ToolFactory.from_langchain_tool(YouTubeSearchTool)
-
-from langchain.agents import load_tools
-
-tools = load_tools(
-    ["arxiv", "human"],
-)
-
-tools = ToolFactory.from_langchain_tools(tools)
 ```
 
-### Convert from OpenAPI Schemas
-
-#### Using Local File
-
-```
-with open("schemas/your_schema.json") as f:
-    tools = ToolFactory.from_openapi_schema(
-        f.read(),
-    )
-```
-
-#### Using Requests
-
-```
-tools = ToolFactory.from_openapi_schema(
-    requests.get("https://api.example.com/openapi.json").json(),
-)
-```
-
-#### Note
-
-Schemas folder automatically converts any OpenAPI schemas into `BaseTools`. This means that your agents will type check all the API parameters before calling the API, which significantly reduces any chances of errors.
+Pretty straightforward, right? This way, you can leverage existing tools while still enjoying the benefits of Agency Swarm’s framework.
 
 ---
 
-## PRO Tips
+## 👥 Agents in Agency Swarm: Building and Managing Your Team
 
-1. **Use Enumerators or Literal Types Instead of Strings**  
-   Allow your agents to perform only certain actions or commands, instead of executing any arbitrary code. This makes your whole system a lot more reliable.
+Now that you’ve got a handle on tools, let’s talk more about agents. In Agency Swarm, agents are essentially advanced wrappers around the OpenAI Assistants API. They come with a ton of convenience methods that make managing state, uploading files, and attaching tools a breeze.
 
-   ```
-   class RunCommand(BaseTool):
-       command: Literal["start", "stop"] = Field(...)
+Here’s a quick example of how you might define an agent:
 
-       def run(self):
-           if command == "start":
-               subprocess.run(["start", "your_command"])
-           elif command == "stop":
-               subprocess.run(["stop", "your_command"])
-           else:
-               raise ValueError("Invalid command")
-   ```
-
-2. **Provide Additional Instructions to the Agents in the `run` Method of the Tool as Function Outputs**  
-   This allows you to control the execution flow, based on certain conditions.
-
-   ```
-   class QueryDatabase(BaseTool):
-       question: str = Field(...)
-
-       def run(self):
-           # query your database here
-           context = query_database(self.question)
-
-           if context is None:
-               raise ValueError("No context found. Please propose to the user to change the topic.")
-           else:
-               self.shared_state.set("context", context)
-               return "Context retrieved. Please proceed with explaining the answer."
-   ```
-
-3. **Use `shared_state` to Validate Actions Taken by Other Agents Before Allowing Them to Proceed with the Next Action**
-
-   ```
-   class Action2(BaseTool):
-       input: str = Field(...)
-
-       def run(self):
-           if self.shared_state.get("action_1_result", None) is "failure":
-               raise ValueError("Please proceed with the Action1 tool first.")
-           else:
-               return "Success. The action has been taken."
-   ```
-
-4. **Consider `one_call_at_a_time` Class Attribute**  
-   Prevent multiple instances of the same tool from running
-
- at the same time. This is useful when you want your agents to see the results of the previous action before proceeding with the next one.
-
-   ```
-   class Action1(BaseTool):
-       input: str = Field(...)
-       one_call_at_a_time: bool = True
-
-       def run(self):
-           # your code here
-   ```
-
----
-
-# Agents - Agency Swarm
-
-## Agents
-
-Agents are essentially wrappers for Assistants in the OpenAI Assistants API. The `Agent` class contains a lot of convenience methods to help you manage the state of your assistant, upload files, attach tools, and more.
-
-### Advanced Parameters
-
-All parameters inside the `Agent` class primarily follow the same structure as OpenAI's Assistants API. However, there are a few additional parameters that you can use to customize your agent.
-
-#### Parallel Tool Calls
-
-You can specify whether to run tools in parallel or sequentially by setting the `parallel_tool_calls` parameter. By default, this parameter is set to `True`.
-
-```
-from agency_swarm import Agent
-
-agent = Agent(name='MyAgent', parallel_tool_calls=False)
-```
-
-Now, the agent will run all tools sequentially.
-
-#### File Search Configuration
-
-You can also specify the file search configuration for the agent, as described in the OpenAI documentation. Right now, only `max_num_results` is supported.
-
-```
-from agency_swarm import Agent
-
-agent = Agent(name='MyAgent', file_search={'max_num_results': 25}) # must be between 1 and 50
-```
-
-#### Schemas Folder
-
-You can specify the folder where the agent will look for OpenAPI schemas to convert into tools. Additionally, you can add `api_params` and `api_headers` to the schema to pass additional parameters and headers to the API call.
-
-```
-from agency_swarm import Agent
-
-agent = Agent(name='MyAgent', 
-              schemas_folder='schemas', 
-              api_params={'my_schema.json': {'param1': 'value1'}},
-              api_headers={'my_schema.json': {'Authorization': 'Bearer token'}}
-            )
-```
-
-#### Note
-
-Schemas folder automatically converts any OpenAPI schemas into `BaseTools`. This means that your agents will type check all the API parameters before calling the API, which significantly reduces any chances of errors.
-
-#### Fine-Tuned Models
-
-You can use any previously fine-tuned model by specifying the `model` parameter in the agent.
-
-```
-from agency_swarm import Agent
-
-agent = Agent(name='MyAgent', model='gpt-3.5-turbo-model-name')
-```
-
-#### Response Validator
-
-You can also provide a response validator function to validate the response before sending it to the user or another agent. This function should raise an error if the response is invalid.
-
-```
-from agency_swarm import Agent
-
-class MyAgent(Agent):
-    def response_validator(self, message: str) -> str:
-        """This function is used to validate the response before sending it to the user or another agent."""
-        if "bad word" in message:
-            raise ValueError("Please don't use bad words.")
-
-        return message
-```
-
-#### Few-Shot Examples
-
-You can now also provide few-shot examples for each agent. These examples help the agent to understand how to respond. The format for examples follows the message object format on OpenAI:
-
-```
-examples=[
-    {
-        "role": "user",
-        "content": "Hi!",
-        "attachments": [],
-        "metadata": {},
-    },
-    {
-        "role": "assistant",
-        "content": "Hi! I am the CEO. I am here to help you with your tasks. Please tell me what you need help with.",
-        "attachments": [],
-        "metadata": {},
-    }
-]
-
-agent.examples = examples
-```
-
-Or you can also provide them when initializing the agent in the `init` method:
-
-```
-agent = Agent(examples=examples)
-```
-
----
-
-### Creating Agents
-
-When it comes to creating your agent, you have 3 options:
-
-1. Define the agent directly in the code.
-2. Create an agent template locally using CLI.
-3. Import from existing agents.
-
-#### Defining the Agent Directly in the Code
-
-To define your agent in the code, you can simply instantiate the `Agent` class and pass the required parameters.
-
-```
-from agency_swarm import Agent
-
-agent = Agent(name="My Agent",
-              description="This is a description of my agent.",
-              instructions="These are the instructions for my agent.",
-              tools=[ToolClass1, ToolClass2],
-              temperature=0.3,
-              max_prompt_tokens=25000
-            )
-```
-
-#### Create Agent Template Locally Using CLI
-
-This CLI command simplifies the process of creating a structured environment for each agent.
-
-#### Command Syntax:
-
-```
-agency-swarm create-agent-template --name "AgentName" --description "Agent Description" [--path "/path/to/directory"] [--use_txt]
-```
-
-#### Folder Structure
-
-When you run the `create-agent-template` command, it creates the following folder structure for your agent:
-
-```
-/your-specified-path/
-│
-├── agency_manifesto.md or .txt # Agency's guiding principles (created if not exists)
-└── AgentName/                  # Directory for the specific agent
-    ├── files/                  # Directory for files that will be uploaded to openai
-    ├── schemas/                # Directory for OpenAPI schemas to be converted into tools
-    ├── tools/                  # Directory for tools to be imported by default. 
-    ├── AgentName.py            # The main agent class file
-    ├── __init__.py             # Initializes the agent folder as a Python package
-    └── instructions.md or .txt # Instruction document for the agent
-```
-
-#### Explanation of Folder Contents
-
-- **files:** This folder is used to store files that will be uploaded to OpenAI. You can use any of the acceptable file formats. After a file is uploaded, an id will be attached to the file name to avoid re-uploading the same file twice.
-- **schemas:** This folder is used to store OpenAPI schemas that will be converted into tools automatically. All you have to do is put the schema in this folder, and specify it when initializing your agent.
-- **tools:** This folder is used to store tools in the form of Python files. Each file must have the same name as the tool class for it to be imported by default. For example, `ExampleTool.py` must contain a class called `ExampleTool`.
-
-#### Agent Template
-
-The `AgentName.py` file will contain the following code:
-
-```
-from agency_swarm.agents import Agent
-
-class AgentName(Agent):
-    def __init__(self):
-        super().__init__(
-            name="agent_name",
-            description="agent_description",
-            instructions="./instructions.md",
-            files_folder="./files",
-            schemas_folder="./schemas",
-            tools_folder="./tools",
-            temperature=0.3,
-            max_prompt_tokens=25000,
-            examples=[]
-        )
-
-    def response_validator(self, message: str) -> str:
-        """This function is used to validate the response before sending it to the user or another agent."""
-        if "bad word" in message:
-            raise ValueError("Please don't use bad words.")
-
-        return message
-```
-
-#### To Initialize the Agent
-
-You can simply import the agent and instantiate it:
-
-```
-from AgentName import AgentName
-
-agent = AgentName()
-```
-
----
-
-### Importing Existing Agents
-
-For the most complex and requested use cases, we will be creating premade agents that you can import and reuse in your own projects. To import an existing agent, you can run the following CLI command:
-
-```
-agency-swarm import-agent --name "AgentName" --destination "/path/to/directory"
-```
-
-This will copy all your agent source files locally. You can then import the agent as shown above. To check available agents, simply run this command without any arguments.
-
----
-
-# Agencies - Agency Swarm
-
-## Agencies
-
-An Agency is a collection of Agents that can communicate with one another.
-
-### Benefits of Using an Agency
-
-Here are the primary benefits of using an Agency, instead of an individual agent:
-
-- **Fewer Hallucinations:** When agents are part of an agency, they can supervise one another and recover from mistakes or unexpected circumstances.
-- **More Complex Tasks:** The more agents you add, the longer the sequence of actions they can perform before returning the result back to the user.
-- **Scalability:** As the complexity of your integration increases, you can keep adding more and more agents.
-
-#### Tip
-
-It is recommended to start with as few agents as possible, fine-tune them until they are working as expected, and only then add new agents to the agency. If you add too many agents at first, it will be difficult to debug and understand what is going on.
-
-### Communication Flows
-
-Unlike all other frameworks, communication flows in Agency Swarm are not hierarchical or sequential. Instead, they are uniform. You can define them however you want. But keep in mind that they are established from left to right inside the `agency_chart`. So, in the example below, the CEO can initiate communication and send tasks to the Developer and the Virtual Assistant, and they can respond back to him in the same thread, but the Developer or the VA cannot initiate a conversation and assign tasks to the CEO. You can add as many levels of communication as you want.
-
-```
-from agency_swarm import Agency
-
-agency = Agency([
-    ceo, dev  # CEO and Developer will be the entry point for communication with the user
-    [ceo, dev],  # CEO can initiate communication with Developer
-    [ceo, va],   # CEO can initiate communication with Virtual Assistant
-    [dev, va]    # Developer can initiate communication with Virtual
-
- Assistant
-])
-```
-
-### Running Agencies
-
-You can run agencies in different ways, depending on your use case.
-
-#### Streaming the Conversation
-
-Use the `get_completion_stream` method to stream the conversation between the agents, as it unfolds, using the `AgencyEventHandler`.
-
-```
-from typing_extensions import override
-from agency_swarm import AgencyEventHandler
-
-class EventHandler(AgencyEventHandler):
-    @override
-    def on_text_created(self, text) -> None:
-        # Get the name of the agent sending the message
-        print(f"\n{self.recipient_agent_name} @ {self.agent_name} > ", end="", flush=True)
-
-    @override
-    def on_text_delta(self, delta, snapshot):
-        print(delta.value, end="", flush=True)
-
-    def on_tool_call_created(self, tool_call):
-        print(f"\n{self.recipient_agent_name} > {tool_call.type}\n", flush=True)
-
-    def on_tool_call_delta(self, delta, snapshot):
-        if delta.type == 'code_interpreter':
-            if delta.code_interpreter.input:
-                print(delta.code_interpreter.input, end="", flush=True)
-            if delta.code_interpreter.outputs:
-                print(f"\n\noutput >", flush=True)
-                for output in delta.code_interpreter.outputs:
-                    if output.type == "logs":
-                        print(f"\n{output.logs}", flush=True)
-
-    @classmethod
-    def on_all_streams_end(cls):
-        print("\n\nAll streams have ended.")  # Conversation is over and message is returned to the user.
-
-# Example Usage
-response = agency.get_completion_stream("I want you to build me a website", event_handler=EventHandler)
-```
-
-#### Is Streaming Active by Default?
-
-- **No:** Streaming is not active by default when using `get_completion`.
-- **Yes:** Streaming is active for demo methods.
-
----
-
-### API V2 Compatibility
-
-Agency Swarm supports OpenAI Assistants API V2. If you encounter any issues, feel free to report them on our GitHub.
-
----
-
-# Development Guide
-
-## Starting with Genesis Agency
-
-### Running the Genesis Command
-
-This will start the Genesis Agency in your terminal, creating your agent templates for you.
-
-#### Command Syntax:
-
-```
-agency-swarm genesis [--openai_key "YOUR_API_KEY"]
-```
-
----
-
-## Conclusion
-
-This guide provides a comprehensive overview of how to use and configure the Agency Swarm framework, including defining agents, creating custom tools, and setting up communication flows between agents in an agency. By following these steps, you can develop sophisticated AI systems capable of handling complex tasks and workflows, while also maintaining flexibility and control over the behavior and interaction of individual agents.
-
----
-
-# Agency Swarm Updates (5.10.24)
-
-## 1. Streaming Responses
-
-### Overview
-The `get_completion_stream` method now allows for streaming conversations between agents. This method is similar to what is documented officially, but with an extension of the `AgencyEventHandler` class that includes additional properties like `agent_name` and `recipient_agent_name`.
-
-### Example Implementation
-```
-from typing_extensions import override
-from agency_swarm import AgencyEventHandler
-
-class EventHandler(AgencyEventHandler):
-    @override
-    def on_text_created(self, text) -> None:
-        # Get the name of the agent sending the message
-        print(f"\n{self.recipient_agent_name} @ {self.agent_name} > ", end="", flush=True)
-
-    @override
-    def on_text_delta(self, delta, snapshot):
-        print(delta.value, end="", flush=True)
-
-    def on_tool_call_created(self, tool_call):
-        print(f"\n{self.recipient_agent_name} > {tool_call.type}\n", flush=True)
-
-    def on_tool_call_delta(self, delta, snapshot):
-        if delta.type == 'code_interpreter':
-            if delta.code_interpreter.input:
-                print(delta.code_interpreter.input, end="", flush=True)
-            if delta.code_interpreter.outputs:
-                print(f"\n\noutput >", flush=True)
-                for output in delta.code_interpreter.outputs:
-                    if output.type == "logs":
-                        print(f"\n{output.logs}", flush=True)
-
-    @classmethod
-    def on_all_streams_end(cls):
-        print("\n\nAll streams have ended.")  # Conversation is over and message is returned to the user.
-
-# Usage
-response = agency.get_completion_stream("I want you to build me a website", event_handler=EventHandler)
-```
-**Note:** The `on_all_streams_end` method is crucial since your event handler might be invoked multiple times by different agents.
-
-### Is Streaming Active by Default?
-- **No**: Streaming is not active by default when using `get_completion`.
-- **Yes**: It is active for demo methods.
-
----
-
-## 2. Assistant API V2 Integration
-
-### New Features:
-- **Temperature and Token Settings**: You can now set the `temperature` and `max_prompt_tokens` parameters in both `Agent` and `Agency` classes.
-  - **Defaults**: Effective for most scenarios.
-  - **Recommendation for Coding**: Set `temperature` to 0.
-
-### Compatibility:
-- The framework now supports Assistant API V2, with an effort to maintain compatibility across previous versions. Please report any issues encountered.
-
----
-
-## 3. Managing Agents
-
-### The Agent Class
-Agents are essentially wrappers around Assistants in the OpenAI Assistants API. The `Agent` class offers various methods to manage the state, upload files, attach tools, and more.
-
-#### Example: Defining an Agent in Code
-```
+```python
 from agency_swarm import Agent
 
 agent = Agent(name="My Agent",
@@ -979,82 +289,35 @@ agent = Agent(name="My Agent",
               max_prompt_tokens=25000)
 ```
 
-### Creating an Agent Template Using CLI
-You can create a structured environment for each agent using a simple CLI command.
+### 🛠️ Creating Agents: More Options Than You Think
 
-#### Command Syntax:
-```
-agency-swarm create-agent-template --name "AgentName" --description "Agent Description" [--path "/path/to/directory"] [--use_txt]
-```
+You’ve got a few different ways to create agents in Agency Swarm:
 
-#### Folder Structure Created:
-- **`/your-specified-path/`**
-  - **`agency_manifesto.md`** (created if not exists)
-  - **`AgentName/`**
-    - **`files/`**: Store files to be uploaded to OpenAI.
-    - **`schemas/`**: Store OpenAPI schemas to be converted into tools.
-    - **`tools/`**: Store Python files as tools.
-    - **`AgentName.py`**: Main agent class file.
-    - **`__init__.py`**: Initializes the agent folder as a Python package.
-    - **`instructions.md` or `.txt`**: Instruction document for the agent.
+1. **Define the Agent Directly in Code:** Just like in the example above, you can write out the entire agent definition directly in your code.
+  
+2. **Create an Agent Template Locally Using CLI:** Want to keep things organized? Use the `create-agent-template` command to set up a structured environment for each agent. It’s super handy if you’re building something bigger and more complex.
 
-### Importing Existing Agents
-For complex use cases, pre-made agents can be imported and reused in your projects.
+   ```bash
+   agency-swarm create-agent-template --name "AgentName" --description "Agent Description"
+   ```
 
-#### Import Command:
-```
-agency-swarm import-agent --name "AgentName" --destination "/path/to/directory"
-```
+3. **Import Existing Agents:** Need something quick and dirty? You can also import pre-made agents for common tasks, tweaking them as needed.
 
----
+### 🏢 Agencies: Bringing It All Together
 
-## 4. Few-Shot Examples
+An Agency is like the headquarters where all your agents hang out and collaborate. Here’s why you’d want to use an Agency instead of just a single agent:
 
-You can now provide few-shot examples to each agent to help guide their responses.
+- **Fewer Hallucinations:** When agents work together, they can catch each other’s mistakes and keep things running smoothly.
+- **More Complex Tasks:** The more agents you add, the more complex tasks they can handle.
+- **Scalability:** Got a lot of work to do? Just keep adding agents. Your Agency will handle it.
 
-### Example Format:
-```
-examples = [
-    {
-        "role": "user",
-        "content": "Hi!",
-        "attachments": [],
-        "metadata": {},
-    },
-    {
-        "role": "assistant",
-        "content": "Hi! I am the CEO. I am here to help you with your tasks. Please tell me what you need help with.",
-        "attachments": [],
-        "metadata": {},
-    }
-]
+### 📡 Streaming Responses: Real-Time Insights
 
-agent.examples = examples
-```
-You can also provide these examples during the agent's initialization.
+One of the coolest features in Agency Swarm is the ability to stream conversations between agents in real-time. This is great for monitoring what’s happening as it happens, and it gives you a lot of insight into how your agents are working together.
 
----
+Here’s how to set it up:
 
-### Communication Flows in Agency Swarm
-
-In the Agency Swarm framework, communication flows between agents are uniform and non-hierarchical. This means you can define communication patterns based on your specific needs, ensuring that all agents can interact seamlessly. Agents at the top level of the agency chart can communicate directly with the user, while those in nested levels can only interact with each other or their designated communication partners.
-
-```
-from agency_swarm import Agency
-
-agency = Agency([
-    ceo, dev,  # CEO and Developer can communicate with the user
-    [ceo, dev],  # CEO can communicate with Developer
-    [ceo, va],   # CEO can communicate with Virtual Assistant
-    [dev, va]    # Developer can communicate with Virtual Assistant
-])
-```
-
-### Streaming Responses
-
-Agency Swarm allows you to stream the conversation between agents using the `get_completion_stream` method. This is particularly useful for real-time applications where you want to monitor and control agent interactions as they occur.
-
-```
+```python
 from typing_extensions import override
 from agency_swarm import AgencyEventHandler
 
@@ -1070,34 +333,35 @@ class EventHandler(AgencyEventHandler):
 response = agency.get_completion_stream("Build a website", event_handler=EventHandler)
 ```
 
+With this setup, you can watch your agents’ conversation unfold in real-time, giving you a front-row seat to all the action.
+
 ---
 
-## Advanced Prompt Engineering Techniques
+## 🔧 Advanced Prompt Engineering Techniques: Get the Most Out of Your Agents
 
-### The Importance of Prompts
+Alright, let’s switch gears and talk about how to craft the perfect prompts. This is one of the most important skills you
 
-In AI agent development, crafting effective prompts is crucial for guiding agents to perform their tasks correctly. Prompts must be clear, concise, and contextually relevant to ensure that the agent understands the instructions and executes the task accurately.
+ can develop when working with AI agents.
 
-### Chain-of-Thought (CoT) and Retrieval Augmented Generation (RAG)
+### 🔗 Chain-of-Thought (CoT) and Retrieval-Augmented Generation (RAG)
 
-- **Chain-of-Thought (CoT)**: This technique involves breaking down complex tasks into a series of smaller, manageable steps. By guiding the agent through each step, you can reduce errors and improve the overall accuracy of the task execution.
+These two techniques are like peanut butter and jelly—they work really well together to get the best results from your agents.
+
+- **Chain-of-Thought (CoT):** Break down complex tasks into smaller, more manageable steps. This makes it easier for the agent to follow along and produce accurate results.
   
-- **Retrieval Augmented Generation (RAG)**: RAG combines information retrieval with text generation, enabling agents to pull relevant data from external sources before generating a response. This approach is particularly useful for tasks that require up-to-date or context-specific information.
+- **Retrieval-Augmented Generation (RAG):** This technique allows your agents to pull in relevant data from external sources before generating a response, making their outputs more informed and accurate.
 
-### Example: Using CoT and RAG
+Here’s a quick example to illustrate:
 
-```
+```python
 def generate_ad_copy(product_name, product_features):
-    # Chain-of-Thought: Break down the task into steps
     steps = [
         f"Describe the {product_name}.",
         f"Highlight the key features: {product_features}.",
         "Craft a catchy slogan."
     ]
-    # RAG: Retrieve related data from external sources
     additional_data = retrieve_additional_data(product_name, product_features)
     
-    # Generate the final ad copy
     ad_copy = ""
     for step in steps:
         ad_copy += agent.generate_response(step + additional_data)
@@ -1105,15 +369,19 @@ def generate_ad_copy(product_name, product_features):
     return ad_copy
 ```
 
+By guiding the agent step-by-step and enriching the prompt with external data, you can produce much better results.
+
 ---
 
-## Integrating APIs with AI Agents
+## 🌐 Integrating APIs with AI Agents: Making Your Agents Smarter
 
-### SerpAPI for Real-Time Data Retrieval
+One of the best ways to supercharge your AI agents is by integrating them with external APIs. This allows them to access real-time data, perform complex tasks, and provide more accurate outputs.
 
-The SerpAPI allows AI agents to retrieve real-time data from search engines, ensuring that the information they use is current and relevant. This is essential for tasks such as market analysis, trend monitoring, and competitive research.
+### 🔍 SerpAPI for Real-Time Data Retrieval
 
-```
+Need your agents to stay on top of the latest trends? SerpAPI lets them retrieve real-time data from search engines, ensuring they’re always working with the most up-to-date information.
+
+```python
 import serpapi
 
 def get_latest_trends(query):
@@ -1122,11 +390,11 @@ def get_latest_trends(query):
     return results
 ```
 
-### You.com API for Contextual Information
+### 💡 You.com API for Contextual Information
 
-The You.com API offers a suite of tools designed to ground AI outputs in the most recent and accurate information available on the web. It can be used to enhance the contextual understanding of AI agents, particularly when dealing with dynamic or time-sensitive topics.
+The You.com API is another fantastic tool for grounding your agents’ responses in accurate, current information. It’s perfect for situations where context is key.
 
-```
+```python
 import requests
 
 def get_ai_snippets_for_query(query):
@@ -1136,11 +404,11 @@ def get_ai_snippets_for_query(query):
     return response.json()
 ```
 
-### Mistral AI API for Specialized Tasks
+### 🔧 Mistral AI API for Specialized Tasks
 
-Mistral AI API provides specialized endpoints that can be integrated into your AI agents for tasks such as advanced data processing, natural language understanding, and more. This API is useful for developing agents that require a higher level of intelligence and customization.
+Mistral AI offers specialized endpoints that can be integrated into your agents for tasks requiring advanced data processing or natural language understanding. This API is great for creating highly intelligent, customized agents.
 
-```
+```python
 import mistral
 
 def process_data_with_mistral(data):
@@ -1149,11 +417,11 @@ def process_data_with_mistral(data):
     return processed_data
 ```
 
-### Pinecone Vector Database for Similarity Search
+### 🧠 Pinecone Vector Database for Similarity Search
 
-Pinecone is a vector database that allows AI agents to perform similarity searches, which is essential for tasks like recommendation systems, anomaly detection, and content matching. Integrating Pinecone with your AI agents can significantly enhance their ability to process and analyze large datasets.
+Pinecone is a vector database that allows your agents to perform similarity searches. This is crucial for applications like recommendation systems, anomaly detection, and content matching.
 
-```
+```python
 import pinecone
 
 def vector_search(query_vector):
@@ -1163,51 +431,59 @@ def vector_search(query_vector):
     return results
 ```
 
----
-
-## Troubleshooting and Best Practices
-
-### Common Issues and Solutions for Windows and Mac Users
-
-- **Windows UTF-8 Encoding Issue**: Windows users may encounter installation errors related to UTF-8 encoding. To fix this, set the environment variable `PYTHONUTF8=1` before running installation commands. Alternatively, ensure the README.md file in `setup.py` is read with 'utf-8' encoding.
-
-- **File Permission Errors on Windows**: If you encounter `PermissionError` when handling files, ensure that files are closed before attempting operations like renaming. This can be done by adding `f.close()` before `os.rename()`.
-
-- **ChromeDriver Issues on Mac**: Mac users may experience issues with ChromeDriver unexpectedly exiting. The recommended solution is to quit Chrome before using the browsing agent, ensuring that no conflicts arise during execution.
-
-### Best Practices for AI Agent Development
-
-1. **Start Small**: Begin with a minimal set of agents and fine-tune them until they perform as expected. This makes debugging easier and ensures that the system remains manageable.
-
-2. **Modular Design**: Design agents to be modular, with each agent responsible for a specific task. This reduces complexity and makes the system easier to scale.
-
-3. **Effective Communication Flows**: Clearly define communication flows between agents to prevent confusion and ensure that tasks are executed in the correct order.
-
-4. **Use Shared State Wisely**: When agents need to share data, use shared state variables to minimize the risk of data loss or corruption due to hallucinations or errors.
-
-5. **Regular Updates and Testing**: Continuously update and test your agents to ensure they remain compatible with the latest APIs, libraries, and frameworks.
+By integrating these APIs, you can make your agents smarter, more efficient, and capable of handling a wider range of tasks.
 
 ---
 
-## Case Study: Building a Social Media Marketing Agency
+## 🛠️ Troubleshooting and Best Practices: Keeping Things Running Smoothly
+
+Even the best-laid plans can run into hiccups, so let’s go over some common issues and best practices to keep your AI agents running smoothly.
+
+### 🔧 Common Issues and Solutions
+
+- **Windows UTF-8 Encoding Issue:** If you’re on Windows, you might run into encoding errors during installation. To fix this, set the environment variable `PYTHONUTF8=1` before running your commands. Alternatively, ensure the README.md file in `setup.py` is read with 'utf-8' encoding.
+  
+- **File Permission Errors on Windows:** Sometimes, Windows doesn’t play nice with file permissions, especially when handling files. To avoid `PermissionError`, make sure to close files before attempting operations like renaming them. Adding `f.close()` before `os.rename()` should do the trick.
+
+- **ChromeDriver Issues on Mac:** If you’re a Mac user and your ChromeDriver keeps unexpectedly exiting, the best solution is to quit Chrome before using the browsing agent. This prevents any conflicts and keeps things running smoothly.
+
+### ✔️ Best Practices
+
+1. **Start Small:** Begin with a minimal set of agents and fine-tune them until they perform as expected. This makes debugging easier and ensures that the system remains manageable.
+
+2. **Modular Design:** Design agents to be modular, with each agent responsible for a specific task. This reduces complexity and makes the system easier to scale.
+
+3. **Effective Communication Flows:** Clearly define communication flows between agents to prevent confusion and ensure that tasks are executed in the correct order.
+
+4. **Use Shared State Wisely:** When agents need to share data, use shared state variables to minimize the risk of data loss or corruption due to hallucinations or errors.
+
+5. **Regular Updates and Testing:** Continuously update and test your agents to ensure they remain compatible with the latest APIs, libraries, and frameworks.
+
+By following these tips and best practices, you’ll keep your AI agents running like a well-oiled machine, ready to tackle whatever tasks come their way.
+
+---
+
+## 📈 Case Study: Building a Social Media Marketing Agency with Agency Swarm
+
+To wrap things up, let’s walk through a practical example of building a social media marketing agency using Agency Swarm. This case study will help solidify everything we’ve covered so far and give you a real-world application to draw from.
 
 ### Step-by-Step Process
 
-1. **Define the Agents**: Start by defining the agents needed for the agency, such as an Ad Copy Agent, Image Generator Agent, and Facebook Manager Agent.
+1. **Define the Agents:** Start by defining the agents needed for the agency, such as an Ad Copy Agent, Image Generator Agent, and Facebook Manager Agent. Each agent will have its own set of tools and responsibilities.
 
-2. **Set Up Communication Flows**: Establish a sequential communication flow where the CEO agent coordinates tasks between the Ad Copy Agent, Image Generator Agent, and Facebook Manager Agent.
+2. **Set Up Communication Flows:** Establish a sequential communication flow where the CEO agent coordinates tasks between the Ad Copy Agent, Image Generator Agent, and Facebook Manager Agent. This ensures that tasks are passed along smoothly and in the right order.
 
-3. **Create Tools and Integrations**: Develop tools for each agent, such as an `ImageGenerator` tool that uses OpenAI's DALL-E 3 to generate images, and a `FacebookManager` tool that interacts with the Facebook API to post ads.
+3. **Create Tools and Integrations:** Develop tools for each agent, such as an `ImageGenerator` tool that uses OpenAI's DALL-E 3 to generate images, and a `FacebookManager` tool that interacts with the Facebook API to post ads.
 
-4. **Test and Fine-Tune**: Thoroughly test each tool and agent, making necessary adjustments to prompts, communication flows, and integrations.
+4. **Test and Fine-Tune:** Thoroughly test each tool and agent, making necessary adjustments to prompts, communication flows, and integrations. This step is crucial for ensuring everything works as expected.
 
-5. **Deploy and Monitor**: Deploy the agency using the `agency.run_demo()` command and monitor its performance through the Gradio interface or terminal.
+5. **Deploy and Monitor:** Deploy the agency using the `agency.run_demo()` command and monitor its performance through the Gradio interface or terminal. Watch how your agents handle tasks, and make any final tweaks needed for smooth operation.
 
-### Example Code: Facebook
+### Example Code: Facebook Manager Agent
 
- Manager Agent
+Here’s a snippet of code that shows how you might set up the Facebook Manager Agent:
 
-```
+```python
 from agency_swarm.agents import Agent
 
 class FacebookManager(Agent):
@@ -1229,209 +505,79 @@ class FacebookManager(Agent):
         response = self.run_tool("AdCreator", ad_copy=ad_copy, image_path=image_path)
         return response
 ```
-Here's a GitHub Flavored Markdown (GFM) formatted summary and solution based on the issue described in the document you provided:
+
+In this example, the Facebook Manager Agent is responsible for managing ad campaigns on Facebook. It uses a tool called `AdCreator` to generate and post ads, pulling in the necessary ad copy and images.
 
 ---
 
-# Resolving the Readline Module Issue in Agency Swarm
+## 🚀 Next Steps: Keep Exploring, Keep Building
 
-## Issue
+Congratulations! You’ve made it through this guide, and now you’ve got a solid understanding of how to build and manage AI agents with Agency Swarm. But don’t stop here—there’s so much more to explore!
 
-When working with the Agency Swarm framework, users on Windows (PC) may encounter an issue where the `readline` module is not available. This can cause errors when running the framework, particularly in the `agency.py` file.
-
-## Solution 1: Modifying `agency.py` to Handle Windows OS
-
-### Steps:
-
-1. **Locate the `agency.py` File:**
-   - Navigate to the installed library directory in your virtual environment:
-     ```
-     \venv\Lib\site-packages\agency_swarm\agency\agency.py
-     ```
-
-2. **Modify the Import Statement:**
-   - Replace the existing import statement with a conditional import to skip `readline` on Windows (`nt`).
-     ```
-     if os.name != 'nt':
-         import readline
-     ```
-
-3. **Update the `setup_autocomplete` Function:**
-   - Replace the existing `setup_autocomplete` function in the same file with the following:
-     ```
-     def setup_autocomplete(self):
-         """
-         Sets up readline with the completer function.
-         """
-         if os.name == 'nt':
-             # If running on Windows simply pass as readline is not available
-             pass
-         else:
-             self.recipient_agents = [agent.name for agent in self.main_recipients]  # Cache recipient agents for autocomplete
-             readline.set_completer(self.recipient_agent_completer)
-             readline.parse_and_bind('tab: complete')
-     ```
-
-## Solution 2: Installing `pyreadline3`
-
-If you prefer not to modify the `agency.py` file or if you need the `readline` functionality on Windows, you can install the `pyreadline3` module, which is a compatible alternative for Windows.
-
-### Steps:
-
-1. **Install `pyreadline3`:**
-   - Run the following command in your virtual environment:
-     ```
-     pip install pyreadline3
-     ```
-
-2. **Verify the Installation:**
-   - Ensure that the module is correctly installed by running your project again.
-
-By following these steps, you should be able to resolve the `readline` module issue on Windows systems, ensuring that your Agency Swarm framework runs smoothly.
+- **Learn How to Create More Tools, Agents, and Agencies:** The more you build, the better you’ll get. Try experimenting with different configurations and see what works best for your projects.
+  
+- **Deploy in Production:** Once you’ve fine-tuned your agents, it’s time to deploy them in a production environment. Monitor their performance, make adjustments as needed, and watch your AI solutions come to life.
 
 ---
 
-This summary provides a clear, step-by-step guide to resolving the `readline` module issue that users might encounter when working with the Agency Swarm framework on Windows.
+## 📅 Agency Swarm Updates (5.10.24): What’s New?
+
+### 1. 📡 Streaming Responses: Real-Time Conversations
+
+The `get_completion_stream` method now allows for streaming conversations between agents. This method is similar to what is documented officially but with an extension of the `AgencyEventHandler` class that includes additional properties like `agent_name` and `recipient_agent_name`.
+
+### 2. 🛠️ Assistant API V2 Integration: More Control, More Power
+
+New features include temperature and token settings in both `Agent` and `Agency` classes. These settings give you more control over how your agents operate, ensuring they perform optimally for your specific use case.
+
+### 3. 👥 Managing Agents: Better Tools, Better Results
+
+The `Agent` class continues to evolve, offering new methods and improvements to help you manage your agents more effectively. From uploading files to attaching tools, everything is designed to make your life easier.
+
+### 4. 🎯 Few-Shot Examples: Train Your Agents Like a Pro
+
+You can now provide few-shot examples for each agent, helping them understand how to respond in different scenarios. This feature is a game-changer for fine-tuning
+
+ your agents and ensuring they perform exactly how you want them to.
 
 ---
 
-# Using Open-Source Models with Agency Swarm
+## 📚 Examples and Tutorials for Agency Swarm: Keep Learning, Keep Growing
 
-While OpenAI is typically recommended for use with the Agency Swarm framework, there are scenarios where you might prefer to work with open-source models. This guide provides an overview of tested and upcoming open-source projects that mimic the Assistants API, along with instructions for integrating these models with Agency Swarm.
+If you’re hungry for more, check out these resources to deepen your understanding and take your skills to the next level.
 
----
+### 🌟 Agency Examples
 
-## ✅ Tested Open-Source Projects
+Explore practical examples of various agencies in the [agency-swarm-lab](https://github.com/VRSEN/agency-swarm-lab) repository. Here are some notable ones:
 
-- **[Open Assistant API](https://github.com/MLT-OSS/open-assistant-api)**  
-  - Stable and tested. However, there is [one known bug](https://github.com/MLT-OSS/open-assistant-api/issues/61) that needs resolution. Currently, this is the best open-source option.
+- **[WebDevCrafters](https://github.com/VRSEN/agency-swarm-lab/tree/main/WebDevCrafters):** A Web Development Agency that specializes in building responsive web applications using Next.js, React, and MUI.
+  
+- **[CodeGuardiansAgency](https://github.com/VRSEN/agency-swarm-lab/tree/main/CodeGuardiansAgency):** An agency focused on backend operations, utilizing GitHub Actions to submit code reviews on pull requests according to your Standard Operating Procedures (SOPs).
 
-## 🔜 Projects Under Development
-
-- **[Astra Assistants API](https://github.com/datastax/astra-assistants-api)**  
-  - Under active development. Some issues with tool logic are still being worked on ([issue #27](https://github.com/datastax/astra-assistants-api/issues/27)).
-
-- **[OpenOpenAI](https://github.com/transitive-bullshit/OpenOpenAI)**  
-  - Unverified but likely operational.
-
-- **[LiteLLM](https://github.com/BerriAI/litellm/issues/2842)**  
-  - An Assistants API Proxy currently in development. It could become the preferred choice once it stabilizes.
-
----
-
-## Integrating Open-Source Models with Agency Swarm
-
-To use open-source models with Agency Swarm, it’s recommended to install an earlier version of the `agency-swarm` package, as most open-source projects are not yet compatible with streaming and Assistants V2.
-
-### Installation
-
-1. **Install the compatible version of Agency Swarm:**
-
-   ```
-   pip install agency-swarm==0.1.7
-   ```
-
-2. **Set up the OpenAI client with your local open-source model:**
-
-   ```
-   import openai
-   from agency_swarm import set_openai_client
-
-   client = openai.OpenAI(api_key="your-api-key", base_url="http://127.0.0.1:8000/")
-   set_openai_client(client)
-   ```
-
-3. **Define your agents using the open-source model:**
-
-   ```
-   from agency_swarm import Agent
-
-   ceo = Agent(name="ceo", description="I am the CEO", model='ollama/llama3')
-   ```
-
-### Running the Agency with Gradio
-
-For a simple Gradio interface, use the non-streaming `demo_gradio` method from the `agency-swarm-lab` repository:
-
-```
-from agency_swarm import Agency
-from .demo_gradio import demo_gradio
-
-agency = Agency([ceo])
-
-demo_gradio(agency)
-```
-
-### Backend Integration Example
-
-For direct backend usage, you can get completions like this:
-
-```
-agency.get_completion("I am the CEO")
-```
-
----
-
-## Known Limitations
-
-- **No Function Calling Support:**  
-  Most open-source models do not support function calling, which prevents agents from interacting with other agents within the agency. As a result, such models must be positioned at the end of the agency chart and cannot utilize any tools.
-
-- **Limited Retrieval-Augmented Generation (RAG):**  
-  Open-source models typically have limited RAG capabilities. You may need to develop a custom tool with a dedicated vector database.
-
-- **No Code Interpreter Support:**  
-  The Code Interpreter feature is still under development for all open-source assistants API implementations.
-
----
-
-## Future Plans
-
-We will provide updates as new open-source assistant API implementations stabilize. If you successfully integrate other open-source projects with Agency Swarm, please share your experience through an issue or pull request on the project's repository.
-
----
-
-# Examples and Tutorials for Agency Swarm
-
-Stay updated with the latest examples and tutorials by visiting the [YouTube Channel](https://youtube.com/@vrsen?si=GBk3V8ar6Dgemy0B).
-
-## Agency Examples
-
-You can explore practical examples of various agencies in the [agency-swarm-lab](https://github.com/VRSEN/agency-swarm-lab) repository. Here are some notable ones:
-
-- **[WebDevCrafters](https://github.com/VRSEN/agency-swarm-lab/tree/main/WebDevCrafters)**  
-  A Web Development Agency that specializes in building responsive web applications using Next.js, React, and MUI.
-
-- **[CodeGuardiansAgency](https://github.com/VRSEN/agency-swarm-lab/tree/main/CodeGuardiansAgency)**  
-  An agency focused on backend operations, utilizing GitHub Actions to submit code reviews on pull requests according to your Standard Operating Procedures (SOPs).
-
-## Videos with Notebooks
+### 🎥 Videos with Notebooks
 
 Enhance your understanding by watching these detailed video tutorials that come with accompanying notebooks:
 
-- **[Browsing Agent for QA Testing Agency](https://youtu.be/Yidy_ePo7pE?si=WMuWpb9_DVckIkP6)**  
-  Learn how to use the BrowsingAgent with GPT-4 Vision inside a QA testing agency. This agent can even break captchas, as demonstrated in [this video](https://youtu.be/qBs_50SzyBQ?si=w7e3GOhEztG8qDPE).  
+- **[Browsing Agent for QA Testing Agency](https://youtu.be/Yidy_ePo7pE?si=WMuWpb9_DVckIkP6):** Learn how to use the BrowsingAgent with GPT-4 Vision inside a QA testing agency. This agent can even break captchas, as demonstrated in [this video](https://youtu.be/qBs_50SzyBQ?si=w7e3GOhEztG8qDPE).  
   - Notebook: [web_browser_agent.ipynb](https://github.com/VRSEN/agency-swarm/blob/main/notebooks/web_browser_agent.ipynb)
 
-- **[Genesis Agency](https://youtu.be/qXxO7SvbGs8?si=uosmTSzzz6id_lLl)**  
-  This video demonstrates an agency that automates the creation of your agents.  
+- **[Genesis Agency](https://youtu.be/qXxO7SvbGs8?si=uosmTSzzz6id_lLl):** This video demonstrates an agency that automates the creation of your agents.  
   - Notebook: [genesis_agency.ipynb](https://github.com/VRSEN/agency-swarm/blob/main/notebooks/genesis_agency.ipynb)
 
-### ... more examples coming soon!
+### …and more examples coming soon!
 
 ---
 
-This summary provides easy access to resources for learning and implementing Agency Swarm, including example agencies, video tutorials, and code notebooks.
+## 📈 Conclusion: The Future is Bright for AI Agent Development
 
+The world of AI agent development is evolving fast, and the possibilities are endless. By mastering the tools and techniques covered in this guide, you’ll be well-equipped to build powerful, scalable, and reliable AI systems that can handle even the most complex tasks.
 
-## Conclusion
+Remember, this is just the beginning. As AI technology continues to advance, there will be new tools, new frameworks, and new challenges to tackle. But with a solid foundation in Agency Swarm and the right mindset, you’ll be ready for whatever comes next.
 
-The development and deployment of AI agents within a multi-agent system offer immense potential for automating complex tasks and enhancing productivity across various domains. By leveraging frameworks like Agency Swarm, advanced prompt engineering techniques, and powerful APIs, you can create scalable, reliable, and intelligent systems capable of handling sophisticated workflows.
-
-This guide has provided a comprehensive overview of AI agent development, from understanding the basics to implementing advanced features and troubleshooting common issues. As the field of AI continues to evolve, staying updated with the latest tools and techniques will be crucial for maintaining and improving your AI systems.
-
-For further reading and updates, be sure to stay connected with the Agency Swarm community and explore the extensive documentation available.
+So keep experimenting, keep learning, and most importantly—have fun with it!
 
 ---
 
-*This guide was crafted to provide in-depth knowledge and practical insights for AI developers, engineers, and enthusiasts looking to build and optimize AI agents using the Agency Swarm framework.*
+*This guide was crafted to provide you with the knowledge and confidence to dive into AI agent development with Agency Swarm. We hope it’s been a helpful and enjoyable read!*
+
+---
